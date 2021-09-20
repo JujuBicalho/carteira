@@ -6,12 +6,15 @@ echo $_SERVER['REQUEST_URI']; -> verificar o que aparece no servidor*/
 function verificarUrl($rota) { //para criar novas rotas dentro do /admin
     $caminho = $_SERVER['REQUEST_URI'];
 
-    if($caminho == $rota) {
+    //tira todos os caract que tiverem a barra normal para se transformar na barra regular
+    $rota = str_replace('/', '\/', $rota); //toda vez que tiver o / vai virar o \/
+    //compara se está batendo com o dado que quero. Tem que comparar com o que está iniciando(^) e ($)limitando o final
+    if(preg_match('/^' . $rota . '$/', $caminho)) {
         return true;
     }
 }
 
-if(verificarUrl('/admin/')) {
+if(verificarUrl("/admin?(.*)")) { //significa que pode aparecer qq coisa depois que será aceito na página
     require __DIR__ . '/admin/routes.php';
 }else if (verificarUrl('/admin')) {
     require __DIR__ . '/admin/routes.php';

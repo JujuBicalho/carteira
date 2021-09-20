@@ -1,3 +1,14 @@
+<?php
+    //Para verificar se a sessão está permitida para a entrada no site após o login.
+    //Se não está logado não entra.
+    session_start();
+    //print_r($_SESSION); (mostrar em array se está autenticado)
+    
+    if(!isset($_SESSION) || !isset($_SESSION["autenticado"]) || !$_SESSION["autenticado"]) {
+        header("location:/");
+    }
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>    
@@ -9,11 +20,12 @@
             height: 100%;
         }
         #header {
-            width: 100%;
-            background-color:#3434eb;
+            min-width: 100vh;
+            background-color:#fc0349;
         }
+
         #content {
-            padding: 35px;
+            padding:72px;
         }
         #main {
             flex: 1;
@@ -24,31 +36,43 @@
         }
         #menu .nav-link.active{
             color: #fff;
-            background-color:#3434eb;
+            background-color:#5485c7;
+            margin-bottom: 5px;
         }
+        
+        #menu .nav-link.active:hover {
+            background-color: #2e5fdb;
+        }
+
+        
 
     </style>
     <title>Administração!</title>
   </head>
 
   <body>  
+      <!--Navbar-->
     <div id="header">
     <nav class="navbar navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">Minha carteira</a>
+            <a class="navbar-brand text-white" href="/admin">MINHA CARTEIRA</a>
+            <a href="/admin/logout" class="btn text-light">Sair</a>
         </div>
     </nav>
     </div> 
 
+    <!--Links-->
     <div class="container" id="main">
         <div class="row">
             <div class="col">
                 <ul class="nav flex-column" id="menu">
+                    
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Categoria</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/categoria/cadastrar">Categoria</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Movimentações</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/categoria/listar">Movimentações</a>
                     </li>                 
                 </ul>
             </div>
