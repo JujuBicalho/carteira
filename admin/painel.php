@@ -42,11 +42,10 @@
         
         #menu .nav-link.active:hover {
             background-color: #2e5fdb;
-        }
-
-        
+        }      
 
     </style>
+    
     <title>Administração!</title>
   </head>
 
@@ -64,11 +63,11 @@
     <!--Links-->
     <div class="container" id="main">
         <div class="row">
-            <div class="col">
+            <div class="col text-center" >
                 <ul class="nav flex-column" id="menu">
                     
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/categoria/cadastrar">Categoria</a>
+                        <a class="nav-link active"  aria-current="page" href="/admin/categoria/cadastrar">Categoria</a>
                     </li>
 
                     <li class="nav-item">

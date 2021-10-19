@@ -1,6 +1,13 @@
-<h1> Categorias </h1>
-<br>
-
+<h1> Cadastrar categorias </h1>
+<style>
+  h1{
+  text-align:center;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+  </style>
+  
 <form method="POST">
   <div class="mb-3">
     <label for="nome" class="form-label">Nome</label>

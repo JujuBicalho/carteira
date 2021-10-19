@@ -1,20 +1,13 @@
 <?php
 
-/*//include é usado para chamar um arquivo
-include __DIR__ . "/render.php";*/
-
-function render($template, $content) {
-    require __DIR__ . '/' . $template . '.php';
-}
-
+//include é usado para chamar um arquivo
+include __DIR__ . "/render.php";
 
 if(verificarUrl("/admin/login")) { //entrar na sessão
     return require __DIR__ . "/login.php";
 }else if(verificarUrl("/admin/logout")){ //sair da sessão
     return require __DIR__ . "/logout.php";
 }
-
-
 if(verificarUrl("/admin") || verificarUrl("/admin/")) {
    render ("painel", "/templates/home.php");
 }else if (verificarUrl("/admin/categoria/cadastrar?(.*)")) {

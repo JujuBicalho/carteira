@@ -3,6 +3,7 @@
 /*echo 'config'; -> teste para ver se aparece o 'config'
 echo $_SERVER['REQUEST_URI']; -> verificar o que aparece no servidor*/
 
+/*------------------------------- ESSA PARTE FOI COLOCADA EM ROUTER.PHP
 function verificarUrl($rota) { //para criar novas rotas dentro do /admin
     $caminho = $_SERVER['REQUEST_URI'];
 
@@ -12,8 +13,9 @@ function verificarUrl($rota) { //para criar novas rotas dentro do /admin
     if(preg_match('/^' . $rota . '$/', $caminho)) {
         return true;
     }
-}
+}-------------------------------*/
 
+/* -------------------- ESSA PARTE FOI COLOCADA EM
 if(verificarUrl("/admin?(.*)")) { //significa que pode aparecer qq coisa depois que será aceito na página
     require __DIR__ . '/admin/routes.php';
 }else if (verificarUrl('/admin')) {
@@ -23,6 +25,7 @@ if(verificarUrl("/admin?(.*)")) { //significa que pode aparecer qq coisa depois 
 }else {
     echo 'Página não encontrada';
 }
+-------------------------------*/
 
 /*if($_SERVER['REQUEST_URI'] == "/admin") {
     require __DIR__ . '/admin/routes.php'; //linkar para abrir o conteúdo da página routes.php
@@ -33,3 +36,19 @@ if(verificarUrl("/admin?(.*)")) { //significa que pode aparecer qq coisa depois 
     http_response_code(404); /*antes de colocar esse código o erro da página dava 200(em inspecionar/network/tese-status)
  Ao colocar esse 'http_response_code(404) o erro do status muda para 404, que é o ideal 
 }*/
+
+use App\Router;
+use App\Rota;
+use App\Controller\Controller;
+
+$caminho = $_SERVER['REQUEST_URI'];
+$router = new Router($caminho);
+$controller = new Controller();
+
+$router->add(new Rota(
+        '/admin', 
+        $controller,
+        'listar'
+));
+
+$router->handler();

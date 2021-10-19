@@ -5,11 +5,14 @@ echo $_SERVER['REQUEST_URI'];
 -->Se ficar requsitando "/" é porque não está requisitando nada. Ex: "Olá/" Se colocar algo após essa barra irá dar erro porque não está configurado.
 -->Para revolver este problema é necessário criar um novo arquivo chamado ".htaccess"*/
 
+require_once __DIR__ . '/../vendor/autoload.php'; //no terminal sempre colocar composer dump-autoload para carregar
+
 require __DIR__ . '/../config.php';
     /*esse comando é para o index.php seja sempre aberto com os dados do config.php**/
 
 
-//Contador para saber quantas vezes a página foi visualizada com cookie
+/*
+//Contador para saber quantas vezes a página foi visualizada com cookie 
 $contador = 1;
 
 //var_dump($_COOKIE); //exibe todos os cookies da página em array para conferir se deu certo

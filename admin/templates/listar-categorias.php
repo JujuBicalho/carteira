@@ -1,5 +1,13 @@
-<h1> Categorias </h1>
+<h1> Movimentações</h1>
 
+<style>
+  h1{
+  text-align:center;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+  </style>
 
 <table class="table">
   <thead>
