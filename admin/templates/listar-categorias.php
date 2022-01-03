@@ -1,3 +1,4 @@
+
 <h1> Movimentações</h1>
 
 <style>
@@ -15,28 +16,25 @@
       <th scope="col"></th>
       <th scope="col">Nome</th>
       <th scope="col">Tipo</th>
-      <th scope="col">Valor</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Alimentação</td>
-      <td>Saída</td>
-      <td>R$ 2.000,00</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Educação</td>
-      <td>Saída</td>
-      <td>R$ 900,00</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td >PetShop</td>
-      <td>Saída</td>
-      <td>R$ 200,00</td>
-    </tr>
+    <?php 
+    foreach($dados as $categoria) {
+      $id = $categoria->getId();
+      $linkEditar = "<a href='/admin/categoria/$id/edicao' class='btn btn-secondary'>Editar</a>";
+      $linkRemover = "<a href='/admin/categoria/$id/edicao' class='btn btn-secondary'>Remover</a>";
+      echo "<tr>";
+      echo "<td>" . $categoria->getId() . "</td>";
+      echo "<td>" . $categoria->getNome() . "</td>";
+      echo "<td>" . App\TiposCategoria::toString($categoria->getTipo()) . "</td>";
+      echo "<td style='width:5px'>" .$linkEditar . "</td>";
+      echo "<td style='width:5px'>" .$linkRemover . "</td>";
+      echo "<tr>";
+    }
+    ?>
   </tbody>
 </table>
 

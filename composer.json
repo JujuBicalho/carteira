@@ -2,7 +2,7 @@
     "name": "juliana/projetophp",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "App"
         }
     },
     "authors": [
@@ -11,5 +11,7 @@
             "email": "julianabbicalho@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php-di/php-di": "^6.3"
+    }
 }

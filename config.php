@@ -37,18 +37,71 @@ if(verificarUrl("/admin?(.*)")) { //significa que pode aparecer qq coisa depois 
  Ao colocar esse 'http_response_code(404) o erro do status muda para 404, que é o ideal 
 }*/
 
+require_once(__DIR__ . '/app/Router.php');
+require_once(__DIR__ . '/app/Controller/PainelController.php');
+require_once(__DIR__ . '/app/Rota.php');
+
+$builder = require_once __DIR__ . '/container.php';
+
+use App\Controller\CategoriaController;
 use App\Router;
 use App\Rota;
-use App\Controller\Controller;
+use App\Controller\PainelController;
 
 $caminho = $_SERVER['REQUEST_URI'];
 $router = new Router($caminho);
-$controller = new Controller();
+$controller = new PainelController();
+$categoriaController = $builder->get(CategoriaController::class);
+
+$dados = $_POST; //DADOS = A TUDO O QUE VEM DO POST
 
 $router->add(new Rota(
-        '/admin', 
-        $controller,
-        'listar'
+        '/', 
+        new App\Controller\SiteController,
+        'home'
+));
+
+$router->add(new Rota(
+    '/admin', 
+    $controller,
+    'listar'
+));
+
+$router->add(new Rota(
+    '/admin/', 
+    $controller,
+    'listar'
+));
+
+$router->add(new Rota(
+    '/admin/login', 
+    $controller,
+    'logar'
+));
+
+$router->add(new Rota(
+    '/admin/logout', 
+    $controller,
+    'logout'
+));
+
+$router->add(new Rota(
+    '/admin/categoria/listar',
+    $categoriaController,
+    'listar'
+));
+
+$router->add(new Rota(
+    '/admin/categoria/cadastrar',
+    $categoriaController,
+    'cadastrar'
+));
+
+$router->add(new Rota(
+    '/admin/categoria/novo',
+    $categoriaController,
+    'novo',
+    $params
 ));
 
 $router->handler();
